@@ -71,18 +71,18 @@ IssueClient class which performs actions (GET - fetch, POST - create, PUT - edit
 Library used to manage the properties file : 
 https://matteobaccan.github.io/owner/
 
-Class `Configuration` is the connection used to load the property file `api.properties` located in `src/test/resources`
+Class `Configuration` is the connection used to load the property file `config.properties` located in `src/test/resources`
  
 `@Config.Sources` loads the properties file and match the attributes with the `@Key`, so that the value can be automatically fetched.
 
 ```java
 @Config.Sources({
     "system:properties",
-    "classpath:api.properties"})
+    "classpath:config.properties"})
 ```
 
 `system:properties` will get the property values from the system (as environment variables or from the command line)
-`api.properties` It will load file from the classpath.
+`config.properties` It will load file from the classpath.
 The environment variables are read on the `ConfiguratorManager`
 
 This class reduces the amount of code used to load, convert and manage the properties file. We can use the properties file in a simplest way possible.
@@ -121,8 +121,8 @@ Contains the postman tests for investigation purpose.
 
 ## How to execute the tests
 
-In the file `api.properties` the values for `api.project.id` and `api.private.token.value` needs to be provided. Due to security reasons token should not be stored in the public repositories.
-Hence, the values for `api.project.id` and `api.private.token.value` needs to be provided in the `api.properties` file, for example : 
+In the file `config.properties` the values for `api.project.id` and `api.private.token.value` needs to be provided. Due to security reasons token should not be stored in the public repositories.
+Hence, the values for `api.project.id` and `api.private.token.value` needs to be provided in the `config.properties` file, for example : 
 
 ![img_5.png](img_5.png)
 

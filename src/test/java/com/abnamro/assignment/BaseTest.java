@@ -44,7 +44,7 @@ public abstract class BaseTest {
     }
 
     /*
-     * When log.all is true in the api.properties file all the request and response information will be logged
+     * When log.all is true in the config.properties file all the request and response information will be logged
      * otherwise it will log only when the test fails
      */
     private static void determineLog() {
