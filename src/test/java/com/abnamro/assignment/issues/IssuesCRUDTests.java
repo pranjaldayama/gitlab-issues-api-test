@@ -10,6 +10,7 @@ import static com.abnamro.assignment.data.changeless.IssuesData.AUTHOR_NAME;
 import static com.abnamro.assignment.data.changeless.IssuesData.AUTHOR_USERNAME;
 import static com.abnamro.assignment.data.changeless.IssuesData.DESCRIPTION;
 import static com.abnamro.assignment.data.changeless.IssuesData.EDITED_TITLE;
+import static com.abnamro.assignment.data.changeless.IssuesData.EDIT_ISSUE;
 import static com.abnamro.assignment.data.changeless.IssuesData.IID;
 import static com.abnamro.assignment.data.changeless.IssuesData.TITLE;
 import static com.abnamro.assignment.data.changeless.IssuesData.TYPE;
@@ -69,7 +70,7 @@ public class IssuesCRUDTests extends BaseTest {
         Integer iid = createdIssueResponse.path(IID);
 
         //Edit the issue created in above step
-        var editedIssueResponse = issueClient.editIssue(iid);
+        var editedIssueResponse = issueClient.editIssue(iid, EDIT_ISSUE);
 
         //Verify that the issue is edited
         assertSoftly(soft -> {

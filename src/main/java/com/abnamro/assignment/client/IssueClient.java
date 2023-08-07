@@ -94,13 +94,13 @@ public class IssueClient {
                 spec(IssueSpecs.verifyNotFoundError());
     }
 
-    public Response editIssue(Integer issueId) {
+    public Response editIssue(Integer issueId, String editDetails) {
 
         return
                 given().
                         spec(IssueSpecs.initialRequest()).
                         when().
-                        put(IssuesData.PROJECTS_PATH_URI + configuration.projectId() + IssuesData.ISSUES_PATH_URI + "/" + issueId + EDIT_ISSUE).
+                        put(IssuesData.PROJECTS_PATH_URI + configuration.projectId() + IssuesData.ISSUES_PATH_URI + "/" + issueId + editDetails).
                         then().
                         spec(IssueSpecs.verifySuccessResponse()).
                         extract().
