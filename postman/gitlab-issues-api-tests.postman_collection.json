@@ -1,0 +1,361 @@
+{
+	"info": {
+		"_postman_id": "167b835d-7a7a-4550-90fc-fdb19619aa12",
+		"name": "GitLab Issues API Tests",
+		"description": "This postman collection is to test the Gitlab Issues API. The CRUD operations are covered for the api.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9962449"
+	},
+	"item": [
+		{
+			"name": "1. Get all projects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gitlab.com/api/v4/projects/",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"projects",
+						""
+					]
+				},
+				"description": "Get details of all the projects which are public on Gitlab"
+			},
+			"response": []
+		},
+		{
+			"name": "2. Get a project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gitlab.com/api/v4/projects/48195822",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"projects",
+						"48195822"
+					]
+				},
+				"description": "Get a particular project of GitLab which user has access to"
+			},
+			"response": []
+		},
+		{
+			"name": "3. Get all issues in a project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "PRIVATE-TOKEN",
+						"value": "glpat-sk-J8iYZ1Z8WukDcwwvs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gitlab.com/api/v4/projects/48195822/issues",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"projects",
+						"48195822",
+						"issues"
+					]
+				},
+				"description": "Get all the issues in a project"
+			},
+			"response": []
+		},
+		{
+			"name": "4. Create a issue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 201\", () => {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.collectionVariables.set(\"iid\", jsonData.iid);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "PRIVATE-TOKEN",
+						"value": "glpat-sk-J8iYZ1Z8WukDcwwvs",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"{{$randomWord}}\",\n  \"description\": \"{{$randomWords}}\"\n}"
+				},
+				"url": {
+					"raw": "https://gitlab.com/api/v4/projects/48195822/issues",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"projects",
+						"48195822",
+						"issues"
+					]
+				},
+				"description": "Create a issue in a project in GitLab"
+			},
+			"response": []
+		},
+		{
+			"name": "5. Get issue in a project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "PRIVATE-TOKEN",
+						"value": "glpat-sk-J8iYZ1Z8WukDcwwvs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gitlab.com/api/v4/projects/48195822/issues/{{iid}}",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"projects",
+						"48195822",
+						"issues",
+						"{{iid}}"
+					]
+				},
+				"description": "Get all the issues in a project"
+			},
+			"response": []
+		},
+		{
+			"name": "6. Delete a issue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", () => {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "PRIVATE-TOKEN",
+						"value": "glpat-sk-J8iYZ1Z8WukDcwwvs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gitlab.com/api/v4/projects/48195822/issues/{{iid}}",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"projects",
+						"48195822",
+						"issues",
+						"{{iid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. Edit/Update a existing project issue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", () => {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "PRIVATE-TOKEN",
+						"value": "glpat-sk-J8iYZ1Z8WukDcwwvs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gitlab.com/api/v4/projects/48195822/issues/{{iid}}?title=Edited Title,description=Edited Description",
+					"protocol": "https",
+					"host": [
+						"gitlab",
+						"com"
+					],
+					"path": [
+						"api",
+						"v4",
+						"projects",
+						"48195822",
+						"issues",
+						"{{iid}}"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "Edited Title,description=Edited Description"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "iid",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

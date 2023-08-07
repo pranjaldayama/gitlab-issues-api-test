@@ -9,7 +9,7 @@ import java.util.List;
 public class Issue {
 
     @SerializedName("project_id")
-    public Integer projectId;
+    public String projectId;
     public String title;
     public Object description;
     public Integer id;

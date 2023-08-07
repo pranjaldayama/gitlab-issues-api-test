@@ -14,24 +14,21 @@ public interface Configuration extends Config {
     @Key("api.base.uri")
     String baseURI();
 
-    @Key("api.health.context")
-    String health();
+    @Key("api.project.id")
+    String projectId();
+
+    @Key("api.content.type")
+    String contentType();
+
+    @Key("api.content.type.value")
+    String contentTypeValue();
+
+    @Key("api.private.token")
+    String privateToken();
+
+    @Key("api.private.token.value")
+    String privateTokenValue();
 
     @Key("log.all")
     boolean logAll();
-
-    @Key("projectId")
-    String projectId();
-
-    @Key("contentType")
-    String contentType();
-
-    @Key("contentTypeValue")
-    String contentTypeValue();
-
-    @Key("privateToken")
-    String privateToken();
-
-    @Key("privateTokenValue")
-    String privateTokenValue();
 }
